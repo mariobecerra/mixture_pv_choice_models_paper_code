@@ -171,10 +171,10 @@ ggtern::ggsave(
 
 (cocktail_pv_i_opt_df %>% 
     select(z1) %>% 
-    mutate(design = "I optimal") %>% 
+    mutate(design = "Bayesian I-optimal") %>% 
     bind_rows(cocktail_pv_d_opt_df %>% 
                 select(z1) %>% 
-                mutate(design = "D optimal")) %>% 
+                mutate(design = "Bayesian D-optimal")) %>% 
     ggplot() +
     geom_dotplot(aes(z1, fill = design, color = design), method = 'histodot', binwidth = 0.055) +
     facet_wrap(~design) +
@@ -182,7 +182,9 @@ ggtern::ggsave(
     theme(legend.position = "none",
           axis.text.y=element_blank(),
           axis.ticks.y=element_blank()) +
+    xlab("") +
     ylab("")
+    
 )  %>% 
   ggsave(
     plot = .,
@@ -237,7 +239,7 @@ ggtern::ggsave(
 
 
 # fds_n_points_per_alternative_cocktail_pv = 1000
-fds_n_points_per_alternative_cocktail_pv = 1000
+fds_n_points_per_alternative_cocktail_pv = 5000
 
 pred_vars_cocktail = mnl_get_fds_simulations(
   design_array = cocktail_pv_i_opt$X,
@@ -284,7 +286,7 @@ cocktail_fds_plots = pred_vars_cocktail %>%
 
 
 width_cocktail_pv_fds = 20
-height_cocktail_pv_fds = 12
+height_cocktail_pv_fds = 8
 
 ggplot2::ggsave(
   filename = paste0(plots_folder, "res_cocktail_pv_fds_db_vs_ib_plot.png"),
