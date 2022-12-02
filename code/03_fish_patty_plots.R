@@ -365,7 +365,7 @@ ggplot2::ggsave(
 
 
 
-##### Cube plots
+##### Cube plots (static)
 for(j in seq_along(cornell_fishpatty_designs)){
   
   kappa_j = cornell_fishpatty_designs[[j]]$kappa
@@ -383,15 +383,17 @@ for(j in seq_along(cornell_fishpatty_designs)){
       names = c(paste0("x", 1:3), paste0("z", 1:3), "choice_set")
     )
     
+    view3d(theta = 180, phi = 23, zoom = 1.1, interactive = F)
     
     plot3d( 
       x = cornell_D_opt_j_df$z1, y = cornell_D_opt_j_df$z2, z = cornell_D_opt_j_df$z3,
       col = "blue",
       type = 's', 
-      radius = .04,
+      radius = .05,
       xlab="z1", ylab="z2", zlab="z3")
     
-    rgl.snapshot(png_filename_D_opt, fmt = 'png')
+    # rgl.snapshot(png_filename_D_opt, fmt = 'png')
+    snapshot3d(png_filename_D_opt, fmt = 'png', width = 400, height = 350)
 
     
   }
@@ -408,14 +410,24 @@ for(j in seq_along(cornell_fishpatty_designs)){
     )
     
     
+    # plot3d( 
+    #   x = cornell_I_opt_j_df$z1, y = cornell_I_opt_j_df$z2, z = cornell_I_opt_j_df$z3,
+    #   col = "blue",
+    #   type = 's', 
+    #   radius = .04,
+    #   xlab="z1", ylab="z2", zlab="z3")
+    
+    view3d(theta = 180, phi = 23, zoom = 1.1, interactive = F)
+    
     plot3d( 
       x = cornell_I_opt_j_df$z1, y = cornell_I_opt_j_df$z2, z = cornell_I_opt_j_df$z3,
       col = "blue",
       type = 's', 
-      radius = .04,
+      radius = .05,
       xlab="z1", ylab="z2", zlab="z3")
     
-    rgl.snapshot(png_filename_I_opt, fmt = 'png')
+    # rgl.snapshot(png_filename_D_opt, fmt = 'png')
+    snapshot3d(png_filename_I_opt, fmt = 'png', width = 400, height = 350)
     
   }
   
